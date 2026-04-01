@@ -1,3 +1,5 @@
+![Banner](banner.svg)
+
 # claude-session-replay
 
 Record and replay Claude Code sessions. Like Asciinema but for Claude Code — captures every tool call, edit, read, and bash command as a replayable timeline.
