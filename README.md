@@ -1,72 +1,74 @@
-<div align="center">
+![Nicholas Ashkar — claude-session-replay](assets/nicholas-ashkar/banner.png)
 
 # claude-session-replay
 
-**Record and replay Claude Code sessions — captures every tool call, edit, and bash command as a replayable timeline**
+Captures selected local Claude session events and replays them in a terminal or HTML export.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue?labelColor=0B0A09)](LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?labelColor=0B0A09)](package.json)
 
-</div>
 
-## Install
 
-```bash
-npx github:NickCirv/claude-session-replay <command>
-```
 
-Or clone and run locally:
 
-```bash
-git clone https://github.com/NickCirv/claude-session-replay.git
-cd claude-session-replay
-npm install
-node bin/replay.js <command>
-```
 
-## Usage
+<a id="usage"></a>
 
-```bash
-# Start recording (run Claude Code normally in another terminal)
-npx github:NickCirv/claude-session-replay record
-npx github:NickCirv/claude-session-replay record --name "building auth module"
+<a id="stop-recording-and-save"></a>
 
-# Stop recording and save
-npx github:NickCirv/claude-session-replay stop
+<a id="list-recorded-sessions"></a>
 
-# List recorded sessions
-npx github:NickCirv/claude-session-replay list
+<a id="replay-in-terminal"></a>
 
-# Replay in terminal
-npx github:NickCirv/claude-session-replay play <session-id>
-npx github:NickCirv/claude-session-replay play <session-id> --speed 2
-npx github:NickCirv/claude-session-replay play <session-id> --speed instant
+<a id="export-as-standalone-html"></a>
 
-# Export as standalone HTML
-npx github:NickCirv/claude-session-replay export <session-id> --html
-npx github:NickCirv/claude-session-replay export <session-id> -o my-session.html
-
-# Delete a session
-npx github:NickCirv/claude-session-replay delete <session-id>
-```
-
-| Flag | Command | Description |
-|------|---------|-------------|
-| `-n, --name <name>` | `record` | Label the session |
-| `-s, --speed <n>` | `play` | Playback speed: `1`, `2`, `5`, or `instant` |
-| `-o, --output <path>` | `export` | Output file path (default: `./<id>.html`) |
+<a id="delete-a-session"></a>
 
 ## What it does
 
-Watches `~/.claude/projects/**/*.jsonl` for live Claude Code activity and stores each tool call (Read, Write, Edit, Bash, Glob, Grep, etc.) as a timestamped event. Sessions are saved to `~/.claude-replay/sessions/` as JSON files. The `play` command replays events with realistic timing; `export` generates a self-contained dark-theme HTML page with a filterable, clickable timeline — no server required.
+- Record/stop lifecycle.
+- Session listing.
+- Speed-controlled playback.
+- HTML export and deletion.
 
-| Event type | Description |
-|------------|-------------|
-| `tool` | Tool calls (Read, Write, Bash, etc.) |
-| `assistant` | Claude text responses |
-| `user` | User messages |
 
----
-<sub>Node >=18 · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
-</content>
-</invoke>
+
+<a id="install"></a>
+
+<a id="start-recording-run-claude-code-normally-in-another-terminal"></a>
+
+## Quickstart
+
+Prerequisites: Node.js `>=20` and npm. The checkout below pins the source used for this documentation.
+
+```sh
+git clone https://github.com/NickCirv/claude-session-replay.git
+cd claude-session-replay
+git checkout 6d72bfaf7fb9d47613ee25951316859a702d8268
+npm install
+node bin/replay.js list
+```
+
+**Expected behavior (illustrative, not captured):** Lists recorded sessions already stored locally.
+
+Examples are source-inspected, **not runtime-tested**. See the research record for verification gaps.
+
+## Boundaries and data
+
+Recording depends on compatible local JSONL formats and can capture sensitive prompts or tool content. Exports are shareable artifacts; inspect them before sharing. Delete removes saved recordings.
+
+## Development
+
+The manifest defines `npm test` as:
+
+```sh
+node --test
+```
+
+The captured suite is a smoke check, not end-to-end behavior coverage. Examples include “entry is valid JavaScript”, “--help exits 0”. Tests were not run for this documentation revision.
+
+See [implementation and command reference](docs/REFERENCE.md) for the package scripts and inspected interfaces, and [research record](docs/RESEARCH.md) for the pinned source, document decisions and unresolved checks.
+
+## License and contact
+
+See [LICENSE](LICENSE) for the original terms and attribution. Legal text is unchanged.
+
+[Nicholas Ashkar](https://nicholashkar.com/) · [Discuss a project](https://nicholashkar.com/#oxblood-contact)
